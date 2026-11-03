@@ -1,0 +1,26 @@
+[Unit]
+Description=Elyvara STUN only (no TURN relay)
+After=network-online.target
+Wants=network-online.target
+Conflicts=coturn.service
+
+[Service]
+Type=simple
+DynamicUser=yes
+RuntimeDirectory=elyvara-stun
+ExecStart=/usr/bin/turnserver -c /etc/elyvara/stun.conf
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=128M
+TasksMax=32
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target
