@@ -118,7 +118,7 @@
 | 界面 | React + TypeScript | 便于房间与诊断状态管理；非硬性依赖 |
 | 媒体连接 | RTCPeerConnection | 使用成熟 ICE、加密、拥塞控制与统计能力 |
 | 捕获 | desktopCapturer + getDisplayMedia | 通过受控处理器让用户选择屏幕或窗口 [3] |
-| 信令 | Node.js + TypeScript + WebSocket | 小规模状态简单，协议易调试 |
+| 信令 | Go + WebSocket | 独立服务二进制，沿用 v1 消息契约（#22） |
 | STUN | 自建仅 STUN 服务或受控可用端点 | 优先减少第三方依赖；必须禁用媒体中继能力 |
 | 房间存储 | 内存 + TTL | 初期不需要数据库；重启会清空房间 |
 | 部署 | Linux 云主机 + TLS 反向代理 | 与 Windows 客户端独立 |

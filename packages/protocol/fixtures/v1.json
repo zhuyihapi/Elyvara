@@ -1,0 +1,209 @@
+[
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "ping"
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.leave"
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "share.request"
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.create",
+        "nickname": " 房主 "
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.create",
+        "nickname": ""
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.create",
+        "nickname": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.join",
+        "roomId": "00000000-0000-4000-8000-000000000001",
+        "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "nickname": "Guest"
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.join",
+        "roomId": "00000000-0000-4000-8000-000000000001",
+        "token": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+        "nickname": "Guest"
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.admit",
+        "peerId": "00000000-0000-4000-8000-000000000001",
+        "allow": false
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "room.admit",
+        "peerId": "00000000-0000-4000-8000-000000000001",
+        "allow": null
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "share.stopped",
+        "version": 1
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "share.stopped",
+        "version": null
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "rtc.description",
+        "targetPeerId": "00000000-0000-4000-8000-000000000001",
+        "generation": 0,
+        "description": {
+          "type": "offer",
+          "sdp": "sample"
+        }
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "rtc.description",
+        "targetPeerId": "00000000-0000-4000-8000-000000000001",
+        "generation": 0,
+        "description": {
+          "type": "rollback",
+          "sdp": "sample"
+        }
+      }
+    }
+  },
+  {
+    "valid": true,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "rtc.candidate",
+        "targetPeerId": "00000000-0000-4000-8000-000000000001",
+        "generation": 0,
+        "candidate": null
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "rtc.candidate",
+        "targetPeerId": "00000000-0000-4000-8000-000000000001",
+        "generation": 0,
+        "candidate": {
+          "candidate": "",
+          "sdpMid": null
+        }
+      }
+    }
+  },
+  {
+    "valid": false,
+    "message": {
+      "v": 1,
+      "messageId": "00000000-0000-4000-8000-000000000001",
+      "payload": {
+        "type": "ping",
+        "senderPeerId": "00000000-0000-4000-8000-000000000001"
+      }
+    }
+  }
+]

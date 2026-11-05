@@ -2,7 +2,7 @@
 
 Transport: native-client WebSocket `/ws`; loopback `ws://` for development, verified `wss://` for public deployment. Browser Origin headers are rejected in this initial native-only service. `GET /healthz` returns `{ "status": "ok", "protocolVersion": 1 }`; no room inventory or diagnostics are public.
 
-The authoritative client schema is `packages/protocol/src/index.ts`. Every client message is `{ "v": 1, "messageId": "<uuid>", "payload": { "type": "..." } }`. Unknown fields are rejected, including self-reported sender identity. IDs are UUIDs; nicknames are trimmed, 1–40 characters. Invitation tokens are 128-bit random hex values, returned only to the creator, never in snapshots or logs. Never put tokens in URL query strings.
+The TypeScript client and Go server validators share `packages/protocol/fixtures/v1.json`. Every client message is `{ "v": 1, "messageId": "<uuid>", "payload": { "type": "..." } }`. Unknown fields are rejected, including self-reported sender identity. IDs are UUIDs; nicknames are trimmed, 1–40 characters. Invitation tokens are 128-bit random hex values, returned only to the creator, never in snapshots or logs. Never put tokens in URL query strings.
 
 | Command | Payload fields | Outcome |
 | --- | --- | --- |
@@ -22,6 +22,6 @@ Snapshots contain roomId, ownerPeerId, peers [{peerId,nickname}], sharingPeerId 
 
 Stable errors: INVALID_MESSAGE, NOT_JOINED, ALREADY_JOINED, INVALID_INVITE, SERVER_FULL, ROOM_FULL, PENDING_FULL, FORBIDDEN, PEER_NOT_FOUND, JOIN_REJECTED, OWNER_CHANGED, JOIN_TIMEOUT, SHARE_BUSY, STALE_SHARE. Validate against these codes rather than parsing prose. room.admit approval success is observed through snapshot; denial/invalid requests through error, not a generic RPC ack.
 
-Limits: 32 concurrent sessions/rooms, 4 admitted members per room, 16 pending requests, 64KiB message limit, 40 messages/second/session, 256KiB outgoing backlog, 60-second pending timeout, 10-minute empty-room TTL. Empty-room invitations become unusable immediately. Native WebSocket ping/pong cleans dead sessions in approximately 30 seconds. State is memory-only and lost on restart. No persistent users, media storage, TURN or relay.
+Limits: 32 concurrent sessions/rooms, 4 admitted members per room, 16 pending requests, 64KiB message limit, 40 messages/second/session, four queued outgoing messages per session, 60-second pending timeout, 10-minute empty-room TTL. Empty-room invitations become unusable immediately. Native WebSocket ping/pong cleans dead sessions in approximately 30 seconds. State is memory-only and lost on restart. No persistent users, media storage, TURN or relay.
 
 The public listener requires TLS. HTTP loopback is intentionally not publicly reachable. TLS authenticates the server, while invites and owner approval authorize room access. This does not claim independently verified end-to-end participant identity against malicious signaling.

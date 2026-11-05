@@ -21,7 +21,7 @@ npm start
 
 ## 信令开发
 
-`npm run start:signaling` 启动回环地址上的开发服务（默认 `127.0.0.1:8080`）。`npm test` 用真实 WebSocket 连接验证房间权限、转发、限流及 TLS；需要 OpenSSL CLI。Windows 可设置 `$env:OPENSSL_BIN="C:\Program Files\Git\usr\bin\openssl.exe"`（若已安装 Git for Windows），其他环境使用 PATH 中的 openssl。测试端口随机分配，测试证书显式信任，仅用于本地测试并自动删除。
+安装 Go 1.27 并加入 PATH 后，`npm run start:signaling` 启动 Go 服务（默认 `127.0.0.1:8080`）。`npm test` 检查两端共用的 v1 样例，并用真实 WS/WSS 测试房间和权限。`npm run build:signaling` 输出本机可执行文件。
 
 [信令契约](docs/signaling.md) · [部署与回退](docs/deployment.md)。可信 WSS 可使用 IP 证书，不强制购买域名；不允许关闭证书校验。STUN 仅地址发现，禁止 TURN 媒体中继。
 

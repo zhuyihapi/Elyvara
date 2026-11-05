@@ -16,7 +16,7 @@ Maintain this agreement in English. Follow the user's preferred language in conv
 
 - Start with M0: a minimal Windows client, signaling, STUN, test media, and diagnostic export. Establish real connectivity before expanding the product interface.
 - The initial design is at most four members, one screen sharer, bidirectional voice, and no camera. These are provisional defaults; changes require an explicit scope decision.
-- Use Electron and TypeScript for the client and Node.js/TypeScript for signaling unless an agreed decision changes the stack. Select maintained versions at implementation time and commit the chosen lockfile.
+- Use Electron and TypeScript for the client and Go with WebSocket for signaling. Commit npm and Go dependency lock data.
 - Use WebRTC peer connections in a full mesh. The cloud coordinates rooms and signaling; it must not receive media or thumbnails. The approximately 3 Mbps server is not a normal-quality media relay.
 - No TURN, SFU, hidden third-party relay, peer forwarding, virtual network adapter, administrator requirement, or automatic firewall/router changes in the initial scope. Report unavailable direct paths honestly. Treat a selected relay candidate as a configuration failure.
 - STUN does not guarantee NAT traversal. Same-province location, IPv6 addresses, and nominal broadband speed do not prove reachability or quality.

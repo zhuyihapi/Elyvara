@@ -4,7 +4,7 @@ Target: user-designated Ubuntu 24.04 server. Preserve existing SSH/tunnel and un
 
 ## Signaling
 
-Use Node.js 24 LTS (official binary under `/opt/elyvara/node`), build with the committed lockfile and `npm ci && npm run check && npm test`. Copy the release to `/opt/elyvara/releases/<commit>`, link `/opt/elyvara/current`, install the checked-in systemd unit under `/etc/systemd/system/`, and place `signaling.env.example` at `/etc/elyvara/signaling.env`.
+Build with Go 1.27. Run `go -C apps/signaling test ./...`. On a POSIX shell, build the Linux amd64 binary with `CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go -C apps/signaling build -o ../../dist/elyvara-signaling .`. Install it as `/opt/elyvara/releases/<commit>/elyvara-signaling`, link `/opt/elyvara/current`, and install the systemd unit and `deploy/signaling.env.example` as `/etc/elyvara/signaling.env`.
 
 Place a valid fullchain/key under `/etc/elyvara/tls/` (root-owned, private key mode 0600). The unit loads them as systemd credentials and grants only privileged-port binding capability. It binds dual-stack `::` port 443; verify both families on the target kernel. Never set NODE_TLS_REJECT_UNAUTHORIZED=0 or accept arbitrary certificates. No TLS files means the public unit must remain stopped. For local development, `npm run start:signaling` binds loopback HTTP port 8080 only.
 
