@@ -1,6 +1,6 @@
 # Elyvara
 
-面向固定小组的 Windows P2P 屏幕共享与语音项目，当前包含 M0 客户端骨架、最小房间信令和 STUN-only 部署配置。公网 WSS 证书仍需按部署条件配置。
+面向固定小组的 Windows P2P 屏幕共享与语音项目，当前包含 M0 直连测试客户端、Go 房间信令和 STUN-only 部署配置。公网 WSS 证书仍需按部署条件配置。
 
 ## 本地开发
 
@@ -27,15 +27,17 @@ npm start
 
 ## 当前能力
 
-Electron 仍是本地静态窗口；启用 sandbox/contextIsolation，关闭 nodeIntegration；默认拒绝权限、导航和新窗口。客户端尚未接入服务，不请求捕获权限。房间和共享租约已在服务端实现，但尚无客户端房间界面、WebRTC、屏幕/音频或网络诊断界面。
+本地测试时先在一个终端运行 `npm run start:signaling`，再在另一个终端运行 `npm start`。使用默认回环信令地址连接。输入昵称、创建房间并复制邀请信息。其他实例粘贴邀请后申请加入，房主审批后建立逐成员连接。点击「发送测试图案」开始发送 640×360 合成视频。测试结束后停止图案、退出房间或关闭窗口。
 
-- `apps/desktop`：主进程与本地界面，目前无需 preload/IPC。
+「检查 STUN」可主动查看是否观察到 srflx。加入房间后，界面每秒更新候选路径、地址族、传输协议、速率和 RTT。「导出脱敏诊断」保存当前摘要。详细步骤和验收范围见 [M0 直连测试](docs/direct-probe.md)。
+
+- `apps/desktop`：主进程信令、沙盒 preload、房间和直连诊断界面。
 - `apps/signaling`：内存房间、邀请审批、成员定向信令、共享租约、限流和清理；入口单独启动。
 - `packages/protocol`：协议版本与 Zod 客户端消息运行时校验。
-- `packages/diagnostics`：明确区分未知路径与缺失测量的共享类型，实际采样待 M0.4 实现。
+- `packages/diagnostics`：区分未知路径与缺失测量的共享类型。客户端在逐成员连接中采样并导出摘要。
 
 依赖版本由锁文件固定，Electron 自带的 Node 运行时与开发用 Node 版本分别管理。安装 Electron 需要下载官方二进制；开发下载代理与产品媒体路径是不同问题，切勿提交带认证的代理配置。
 
 [初始规划](init-plan.md) · [开发 Project](https://github.com/users/zhuyihapi/projects/5) · [工程骨架任务](https://github.com/zhuyihapi/Elyvara/issues/3)
 
-真实好友线路与媒体质量均未验收；缺失环境资料不妨碍离线工程开发，但仍是网络验收前提。后续需完成公网 WSS 证书启用、M0.4 客户端连接与诊断，不把服务启动当成好友直连可用。
+真实好友线路、媒体质量和公网 WSS 仍待验收。M0 客户端使用合成视频，实际屏幕采集与语音属于后续阶段。

@@ -4,3 +4,8 @@ main { max-width: 720px; margin: 64px auto; padding: 24px; }
 h1 { font-size: 48px; margin: 12px 0; }
 p { line-height: 1.7; }
 section { margin-top: 40px; padding: 24px; border: 1px solid light-dark(#cbd5e1, #46526a); border-radius: 12px; }
+label { display: block; margin: 12px 0; }
+input, textarea { display: block; width: 100%; box-sizing: border-box; padding: 8px; font: inherit; }
+button { margin: 4px 0; padding: 8px 12px; font: inherit; }
+article { margin-top: 16px; }
+video { display: block; width: min(100%, 440px); }

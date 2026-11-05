@@ -3,9 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; media-src blob:; base-uri 'none'; form-action 'none'; frame-src 'none'">
 <link rel="stylesheet" href="./style.css">
 <title>Elyvara</title>
 </head>
-<body><main><p>开发原型 · M0</p><h1>Elyvara</h1><p>Windows 屏幕共享与语音</p><section aria-labelledby="status"><h2 id="status">工程骨架已启动</h2><p>房间、网络诊断与媒体连接尚未实现。</p><p>未连接服务器，未采集屏幕或麦克风。</p></section></main></body>
+<body><main>
+<h1>Elyvara</h1><p>M0 直连测试 · 测试视频为程序生成的图案。</p>
+<section aria-labelledby="network-heading">
+  <h2 id="network-heading">连接</h2>
+  <label>信令地址 <input id="endpoint" value="ws://127.0.0.1:8080/ws" maxlength="512"></label>
+  <label>STUN 地址（可选） <input id="stun" placeholder="stun:host:3478" maxlength="256"></label>
+  <div><button id="connect">连接信令</button> <button id="disconnect">断开信令</button> <button id="probe">检查 STUN</button></div>
+  <p id="signal-status" role="status">未连接信令</p><p id="proxy-status">代理路径未知</p>
+  <p id="stun-status" role="status">尚未主动检查 STUN</p>
+</section>
+<section aria-labelledby="room-heading">
+  <h2 id="room-heading">房间</h2><p id="room-status" role="status">未加入房间</p>
+  <label>昵称 <input id="nickname" maxlength="40" autocomplete="off"></label>
+  <label>邀请信息 <textarea id="invite" rows="3" maxlength="512" autocomplete="off" spellcheck="false"></textarea></label>
+  <div><button id="create">创建房间</button> <button id="join">申请加入</button> <button id="leave">退出房间</button></div>
+  <div id="requests" aria-live="polite"></div>
+</section>
+<section aria-labelledby="test-heading">
+  <h2 id="test-heading">直连与测试流</h2>
+  <div><button id="stream">发送测试图案</button> <button id="export">导出脱敏诊断</button></div>
+  <div id="members"></div>
+</section>
+</main><script type="module" src="./client/index.js"></script></body>
 </html>

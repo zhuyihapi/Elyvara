@@ -10,6 +10,8 @@ app.on("web-contents-created", (_event, contents) => {
       assert.equal(prefs.nodeIntegration, false);
       const result = await contents.executeJavaScript("({ title: document.title, node: typeof process, require: typeof require, csp: !!document.querySelector('meta[http-equiv=\"Content-Security-Policy\"]') })");
       assert.deepEqual(result, { title: "Elyvara", node: "undefined", require: "undefined", csp: true });
+      assert.equal(await contents.executeJavaScript("typeof window.elyvara?.connect"), "function");
+      assert.equal(await contents.executeJavaScript("document.querySelector('#create').disabled"), true);
       console.log("Desktop smoke passed: local renderer loaded; isolation, sandbox, CSP and absent renderer Node verified.");
       clearTimeout(timeout);
       app.exit(0);

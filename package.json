@@ -23,10 +23,12 @@
     "start:signaling": "go -C apps/signaling run .",
     "test:signaling": "go -C apps/signaling test ./...",
     "build:signaling": "go -C apps/signaling build -o ../../dist/signaling/ ./...",
-    "vet:signaling": "go -C apps/signaling vet ./..."
+    "vet:signaling": "go -C apps/signaling vet ./...",
+    "smoke:mesh": "npm run build && npm run build:signaling && node scripts/run-mesh-smoke.mjs"
   },
   "devDependencies": {
     "@types/node": "24.19.2",
+    "@types/ws": "8.18.2",
     "electron": "45.2.1",
     "eslint": "10.14.0",
     "typescript": "6.0.3",
